@@ -54,15 +54,15 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 // הוספת Swagger Middleware רק בסביבת פיתוח
-if (app.Environment.IsDevelopment())
-{
+// if (app.Environment.IsDevelopment())
+// {
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
         options.RoutePrefix = string.Empty; // Serve Swagger UI at root (http://localhost)
     });
-}
+// }
 
 // הפעלת CORS
 app.UseCors("AllowAll");
@@ -155,5 +155,5 @@ app.MapDelete("/users/{id}", async (ToDoDbContext dbContext, int id) =>
     return Results.NoContent();
 });
 
-
+app.MapGet("/", () => "Server API is runing");
 app.Run();
