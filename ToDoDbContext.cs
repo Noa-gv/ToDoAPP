@@ -43,11 +43,11 @@ namespace TodoApi
 
             modelBuilder.Entity<Item>(entity =>
             {
-                entity.HasKey(e => e.Id).HasName("PRIMARY");
+                entity.HasKey(e => e.idItems).HasName("PRIMARY");
 
-                entity.ToTable("items");
+                entity.ToTable("Items");
 
-                entity.Property(e => e.Name).HasMaxLength(100);
+                entity.Property(e => e.nameItem).HasMaxLength(100);
             });
 
             modelBuilder.Entity<User>(entity =>

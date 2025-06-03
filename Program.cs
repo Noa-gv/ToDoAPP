@@ -79,7 +79,7 @@ app.MapPost("/items", async (ToDoDbContext dbContext, Item newItem) =>
 {
     dbContext.Items.Add(newItem);
     await dbContext.SaveChangesAsync();
-    return Results.Created($"/items/{newItem.Id}", newItem);
+    return Results.Created($"/items/{newItem.idItems}", newItem);
 });
 
 // Route לעדכון פריט
@@ -88,7 +88,7 @@ app.MapPut("/items/{id}", async (ToDoDbContext dbContext, int id, Item updatedIt
     var item = await dbContext.Items.FindAsync(id);
     if (item is null) return Results.NotFound();
 
-    item.Name = updatedItem.Name;
+    item.nameItem = updatedItem.nameItem;
     item.IsComplete = updatedItem.IsComplete;
     await dbContext.SaveChangesAsync();
     return Results.Ok(item);

@@ -5,9 +5,9 @@ namespace TodoApi
 {
     public partial class Item
     {
-        public int Id { get; set; }
+        public int idItems  { get; set; }
 
-        public string? Name { get; set; }
+        public string? nameItem { get; set; }
 
         public bool? IsComplete { get; set; }
     }
