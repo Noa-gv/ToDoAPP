@@ -9,7 +9,7 @@ namespace TodoApi
 
         public string? nameItem { get; set; }
 
-        public bool? IsComplete { get; set; }
+        public bool? isComplite { get; set; }
     }
 }
 
