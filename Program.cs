@@ -125,7 +125,7 @@ app.MapPost("/users", async (ToDoDbContext dbContext, User newUser) =>
     await dbContext.SaveChangesAsync();
 
     // החזרת תשובה עם קישור למשתמש החדש
-    return Results.Created($"/users/{newUser.idusers}", newUser);  // יש להחליף ב-Id ולא ב-id
+    return Results.Created($"/users/{newUser.idusers}", newUser);  
 });
 
 // Route לעדכון משתמש
