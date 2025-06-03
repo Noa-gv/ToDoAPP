@@ -116,7 +116,7 @@ app.MapGet("/users", async (ToDoDbContext dbContext) =>
 app.MapPost("/users", async (ToDoDbContext dbContext, User newUser) =>
 {
     // השאת הסיסמה
-    newUser.PasswordHash = BCrypt.Net.BCrypt.HashPassword(newUser.PasswordHash);
+    newUser.passwordHash = BCrypt.Net.BCrypt.HashPassword(newUser.passwordHash);
 
     // הוספת המשתמש למסד הנתונים
     dbContext.Users.Add(newUser);
@@ -125,7 +125,7 @@ app.MapPost("/users", async (ToDoDbContext dbContext, User newUser) =>
     await dbContext.SaveChangesAsync();
 
     // החזרת תשובה עם קישור למשתמש החדש
-    return Results.Created($"/users/{newUser.Id}", newUser);  // יש להחליף ב-Id ולא ב-id
+    return Results.Created($"/users/{newUser.idusers}", newUser);  // יש להחליף ב-Id ולא ב-id
 });
 
 // Route לעדכון משתמש
@@ -134,10 +134,10 @@ app.MapPut("/users/{id}", async (ToDoDbContext dbContext, int id, User updatedUs
     var user = await dbContext.Users.FindAsync(id);
     if (user == null) return Results.NotFound();
 
-    user.Username = updatedUser.Username;
-    if (!string.IsNullOrEmpty(updatedUser.PasswordHash))
+    user.nameUser = updatedUser.nameUser;
+    if (!string.IsNullOrEmpty(updatedUser.passwordHash))
     {
-        user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(updatedUser.PasswordHash);
+        user.passwordHash = BCrypt.Net.BCrypt.HashPassword(updatedUser.passwordHash);
     }
 
     await dbContext.SaveChangesAsync();
